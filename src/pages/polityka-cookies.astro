@@ -1,0 +1,50 @@
+---
+import "../styles/global.css";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<html lang="pl" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Polityka cookies</title>
+    <meta name="description" content="Informacje o plikach cookies używanych na stronie darnet24.pl" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+    <Navbar />
+
+    <section class="text-center py-20 px-6 bg-gray-100 dark:bg-gray-800">
+      <h1 class="text-4xl font-bold mb-4">Polityka cookies</h1>
+      <p class="text-lg max-w-3xl mx-auto">Zasady korzystania z plików cookies na stronie darnet24.pl</p>
+    </section>
+
+    <section class="py-16 px-6 max-w-4xl mx-auto space-y-10 text-lg text-gray-800 dark:text-gray-300 leading-relaxed">
+      <div>
+        <h2 class="text-2xl font-semibold mb-2">1. Czym są pliki cookies?</h2>
+        <p>Cookies to niewielkie pliki tekstowe zapisywane w urządzeniu użytkownika. Służą do rozpoznania przeglądarki i poprawnego działania serwisu.</p>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-semibold mb-2">2. Jakie cookies stosujemy?</h2>
+        <ul class="list-disc ml-6 space-y-2">
+          <li><strong>Niezbędne</strong> – konieczne do działania strony (np. zapamiętywanie ustawień).</li>
+          <li><strong>Analityczne</strong> – pomagają zbierać anonimowe dane statystyczne o użytkowaniu strony.</li>
+          <li><strong>Marketingowe</strong> – umożliwiają wyświetlanie reklam dopasowanych do preferencji użytkownika.</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-semibold mb-2">3. Zarządzanie cookies</h2>
+        <p>Użytkownik może zarządzać cookies z poziomu przeglądarki lub używając przycisku „Ustawienia” w naszym banerze cookies.</p>
+      </div>
+
+      <div>
+        <h2 class="text-2xl font-semibold mb-2">4. Podstawa prawna</h2>
+        <p>W przypadku cookies analitycznych i marketingowych wymagamy zgody użytkownika (art. 6 ust. 1 lit. a RODO oraz art. 173 Prawa Telekomunikacyjnego).</p>
+      </div>
+    </section>
+
+    <Footer />
+  </body>
+</html>

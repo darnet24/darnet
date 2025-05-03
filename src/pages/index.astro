@@ -1,0 +1,139 @@
+---
+import "../styles/global.css";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import Card from "../components/Card.astro";
+
+import cms from "../data/cms-content.json";
+---
+
+<html lang="pl" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{cms.seo.title}</title>
+    <meta name="description" content={cms.seo.description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white font-sans">
+    <Navbar />
+
+    <!-- HERO -->
+    <section
+      class="text-center py-28 px-6 bg-cover bg-center text-white"
+      style="background-image: url('/images/hero-bg.webp');"
+    >
+      <h1 class="text-5xl font-bold mb-4 drop-shadow-md">{cms.hero.title}</h1>
+      <p class="text-xl mb-6 drop-shadow-md">{cms.hero.subtitle}</p>
+      <a
+        href="/kontakt"
+        class="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-3 px-6 rounded transition"
+      >
+        Skontaktuj się z nami
+      </a>
+    </section>
+
+    <!-- DLA FIRM -->
+    <section class="py-16 bg-white dark:bg-gray-900">
+      <div class="max-w-7xl mx-auto px-6">
+        <h2 class="text-3xl font-bold text-center mb-10">Usługi dla firm</h2>
+        <div class="grid gap-8 md:grid-cols-3">
+          <div class="p-6 border rounded-lg shadow hover:shadow-lg transition">
+            <h3 class="text-xl font-semibold mb-2">Monitoring 24/7</h3>
+            <p class="text-gray-700 dark:text-gray-300">
+              Stała kontrola stanu Twoich komputerów i sieci, błyskawiczne reakcje na awarie – działamy 24 godziny na dobę, 7 dni w tygodniu.
+              <br/><em>Lokalnie: Warszawa, Pruszków, Piastów.</em>
+            </p>
+          </div>
+          <div class="p-6 border rounded-lg shadow hover:shadow-lg transition">
+            <h3 class="text-xl font-semibold mb-2">Backup danych</h3>
+            <p class="text-gray-700 dark:text-gray-300">
+              Automatyczne kopie zapasowe Twoich plików i baz – bezpieczne przechowywanie w chmurze oraz lokalnie.
+              <br/><em>Pakiety od 200 zł netto / miesiąc.</em>
+            </p>
+          </div>
+          <div class="p-6 border rounded-lg shadow hover:shadow-lg transition">
+            <h3 class="text-xl font-semibold mb-2">Obsługa serwerów</h3>
+            <p class="text-gray-700 dark:text-gray-300">
+              Zarządzanie i utrzymanie serwerów fizycznych i wirtualnych – instalacje, aktualizacje, bezpieczeństwo.
+              <br/><em>Dojazd od 200 zł netto.</em>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKŁADANIE KOMPUTERÓW -->
+    <section class="py-16 bg-gray-50 dark:bg-gray-800">
+      <div class="max-w-4xl mx-auto px-6 text-center">
+        <h2 class="text-3xl font-bold mb-4">Składanie komputerów stacjonarnych</h2>
+        <p class="text-lg text-gray-700 dark:text-gray-300 mb-6">
+          Projektujemy i montujemy wydajne zestawy PC „szyte na miarę” – od biura po gaming.
+          <br/><em>Usługa dostępna lokalnie w Warszawie, Pruszkowie i Piastowie.</em>
+        </p>
+        <a href="/kontakt" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+          Skontaktuj się w sprawie wyceny
+        </a>
+      </div>
+    </section>
+
+    <!-- O NAS -->
+    <section class="py-16 px-6 max-w-5xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-4">Kim jesteśmy?</h2>
+      <p class="text-lg text-gray-700 dark:text-gray-300">{cms.about.short}</p>
+    </section>
+
+    <!-- USŁUGI -->
+    <section class="py-16 px-6 bg-gray-50 dark:bg-gray-800">
+      <h2 class="text-3xl font-bold text-center mb-10">Nasze usługi</h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        {cms.services.map((service) => (
+          <Card title={service.title} description={service.description} image={service.image} />
+        ))}
+      </div>
+    </section>
+
+    <!-- DLACZEGO MY -->
+    <section class="py-16 px-6 max-w-5xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-4">Dlaczego Darnet24?</h2>
+      <p class="text-lg text-gray-700 dark:text-gray-300">{cms.why.text}</p>
+    </section>
+
+<!-- PARTNERZY -->
+<section class="py-16 px-6 bg-white dark:bg-gray-900 text-center">
+  <h2 class="text-3xl font-bold mb-6">Współpracujemy z:</h2>
+  <div class="flex gap-10 overflow-x-auto no-scrollbar py-4">
+    {cms.partners.map(logo => (
+      <div class="h-logo w-logo aspect-w-1 aspect-h-1">
+        <img
+          src={logo.src}
+          alt={logo.alt}
+          class="object-contain h-full w-full"
+          loading="lazy"
+        />
+      </div>
+    ))}
+  </div>
+</section>
+
+
+
+    <!-- LOKALIZACJE -->
+    <section class="py-16 px-6 bg-gray-50 dark:bg-gray-800 text-center">
+      <h2 class="text-3xl font-bold mb-6">Działamy m.in. w:</h2>
+      <ul class="flex justify-center flex-wrap gap-6 text-lg">
+        {cms.locations.map((loc) => (
+          <li><a href={loc.link} class="hover:underline">{loc.name}</a></li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- CTA KONTAKT -->
+    <section class="py-20 px-6 text-center bg-yellow-400 text-black">
+      <h2 class="text-3xl font-bold mb-4">Potrzebujesz pomocy IT?</h2>
+      <p class="mb-6">Skontaktuj się z nami – odpowiemy błyskawicznie!</p>
+      <a href="/kontakt" class="bg-black text-white px-6 py-3 rounded hover:bg-gray-800 transition">Kontakt</a>
+    </section>
+
+    <Footer />
+  </body>
+</html>

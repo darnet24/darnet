@@ -1,0 +1,56 @@
+---
+import "../styles/global.css";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import cms from "../data/cms-content.json";
+
+const { title, description, heading, intro, tresc = [], team = [] } = cms.oNas;
+---
+
+<html lang="pl" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+
+  <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white font-sans">
+    <Navbar />
+
+    <!-- HERO / INTRO -->
+    <section class="text-center py-20 px-6 bg-gray-100 dark:bg-gray-800">
+      <h1 class="text-4xl font-bold mb-4">{heading}</h1>
+      <p class="text-lg max-w-3xl mx-auto">{intro}</p>
+    </section>
+
+    <!-- DETAILED TEXT -->
+    <section class="py-16 px-6 max-w-5xl mx-auto text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+      {tresc.map((akapit, idx) => (
+        <p class="mb-6" key={idx}>{akapit}</p>
+      ))}
+    </section>
+
+    <!-- TEAM -->
+    <section class="py-16 px-6 bg-gray-50 dark:bg-gray-800">
+      <h2 class="text-3xl font-bold text-center mb-10">Nasz zespół</h2>
+      <div class="grid gap-8 md:grid-cols-3 max-w-6xl mx-auto">
+        {team.map((person, idx) => (
+          <div class="text-center bg-white dark:bg-gray-900 p-6 rounded-lg shadow-md" key={idx}>
+            <img
+              src={person.photo}
+              alt={person.name}
+              class="w-32 h-32 object-cover rounded-full mx-auto mb-4"
+              loading="lazy"
+            />
+            <h3 class="text-xl font-semibold">{person.name}</h3>
+            <p class="text-yellow-400 mb-2">{person.role}</p>
+            <p class="text-gray-700 dark:text-gray-300 text-sm">{person.bio}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <Footer />
+  </body>
+</html>

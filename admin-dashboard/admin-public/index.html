@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel administracyjny</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: sans-serif; margin: 0; background: #f9fafb; color: #111; }
+    header { background: #1e293b; color: white; padding: 1rem; }
+    nav button { margin-right: 1rem; padding: 0.5rem 1rem; cursor: pointer; }
+    .hidden { display: none; }
+    .section { padding: 1rem; }
+    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+    th, td { border: 1px solid #ccc; padding: 0.5rem; text-align: left; }
+    textarea, input[type="text"] { width: 100%; margin-bottom: 0.5rem; }
+    .tab { margin-bottom: 2rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Panel administracyjny</h1>
+  </header>
+  <nav class="section">
+    <button onclick="showTab('submissions')">Zgłoszenia</button>
+    <button onclick="showTab('remote-orders')">Pomoc zdalna</button>
+    <button onclick="showTab('cms')">Edycja CMS</button>
+    <button onclick="exportCSV()">Eksportuj do CSV</button>
+    <input type="file" id="restore-file" accept="application/json" onchange="restoreCMS(this)" style="margin-left:1rem" />
+    <button onclick="logout()">Wyloguj się</button>
+  </nav>
+
+  <section id="submissions" class="section tab">
+    <h2>Zgłoszenia kontaktowe</h2>
+    <table>
+      <thead>
+        <tr><th>Imię i nazwisko</th><th>Email</th><th>Zgoda marketingowa</th><th>Data</th></tr>
+      </thead>
+      <tbody id="submission-table"></tbody>
+    </table>
+  </section>
+
+  <section id="cms" class="section tab hidden">
+    <h2>Edycja treści CMS</h2>
+    <form onsubmit="saveCMS(); return false;">
+      <textarea id="cms-json" rows="20"></textarea>
+      <button type="submit">Zapisz zmiany</button>
+    </form>
+  </section>
+
+  <section id="remote-orders" class="section tab hidden">
+    <h2>Pomoc zdalna – zamówienia</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Imię i nazwisko / Firma</th>
+          <th>Email</th>
+          <th>Pakiet</th>
+          <th>Cena</th>
+          <th>Data</th>
+          <th>Opłacone</th>
+          <th>Dane do faktury</th>
+        </tr>
+      </thead>
+      <tbody id="remote-orders-table"></tbody>
+    </table>
+  </section>
+
+  <script>
+    function showTab(id) {
+  document.querySelectorAll('.tab').forEach(tab => tab.classList.add('hidden'));
+  document.getElementById(id).classList.remove('hidden');
+
+  if (id === 'remote-orders') loadRemoteOrders();
+}
+
+
+    async function loadSubmissions() {
+      const res = await fetch('/admin/submissions', { credentials: 'include' });
+      const data = await res.json();
+      const tbody = document.getElementById('submission-table');
+      tbody.innerHTML = '';
+      data.forEach(d => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${d.name}</td><td>${d.email}</td><td>${d.zgodaMarketingowa ? 'TAK' : 'NIE'}</td><td>${new Date(d.timestamp).toLocaleString()}</td>`;
+        tbody.appendChild(tr);
+      });
+    }
+
+    async function loadCMS() {
+      const res = await fetch('/admin/cms', { credentials: 'include' });
+      const data = await res.json();
+      document.getElementById('cms-json').value = JSON.stringify(data, null, 2);
+    }
+
+    async function saveCMS() {
+      const raw = document.getElementById('cms-json').value;
+      try {
+        const parsed = JSON.parse(raw);
+
+        // BACKUP przed zapisem
+        const blob = new Blob([raw], { type: 'application/json' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = `cms-backup-${new Date().toISOString().slice(0,19)}.json`;
+        a.click();
+
+        await fetch('/admin/cms', {
+          method: 'POST',
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(parsed)
+        });
+        alert('Zapisano zmiany CMS. Backup został pobrany.');
+      } catch (err) {
+        alert('Błąd w JSON. Sprawdź poprawność składni.');
+      }
+    }
+
+    function restoreCMS(input) {
+      const file = input.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        document.getElementById('cms-json').value = e.target.result;
+        alert('Backup został załadowany. Możesz teraz zapisać go do CMS.');
+      };
+      reader.readAsText(file);
+    }
+
+    async function exportCSV() {
+      window.location.href = '/admin/export.csv';
+    }
+
+    async function loadRemoteOrders() {
+    const res = await fetch('/admin/remote-orders', { credentials: 'include' });
+    const data = await res.json();
+    const tbody = document.getElementById('remote-orders-table');
+    tbody.innerHTML = '';
+    data.forEach(d => {
+      const tr = document.createElement('tr');
+      const faktura = d.chceFakture && d.faktura
+        ? `<strong>${d.faktura.nazwa}</strong><br>NIP: ${d.faktura.nip}<br>${d.faktura.adres}`
+        : '—';
+      tr.innerHTML = `
+        <td>${d.name}</td>
+        <td>${d.email}</td>
+        <td>${d.packageName}</td>
+        <td>${d.amount} zł</td>
+        <td>${new Date(d.timestamp).toLocaleString()}</td>
+        <td>
+          <input type="checkbox" ${d.paid ? 'checked' : ''} onchange="updatePaidStatus('${d.email}', '${d.timestamp}', this.checked)" />
+        </td>
+        <td>${faktura}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+
+  async function updatePaidStatus(email, timestamp, paid) {
+    const res = await fetch('/admin/remote-orders/update', {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, timestamp, paid })
+    });
+    const result = await res.json();
+    if (!result.success) alert('❌ Nie udało się zaktualizować statusu: ' + result.message);
+  }
+
+loadSubmissions();
+loadCMS();
+loadRemoteOrders();
+  </script>
+  <script>
+    function logout() {
+      fetch('/logout', {
+        method: 'POST',
+        credentials: 'include'
+    })
+    .then(() => window.location.href = '/admin-login.html');
+    }
+  </script>
+  
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Logowanie - Panel administracyjny</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: sans-serif; background: #f0f0f0; display: flex; align-items: center; justify-content: center; height: 100vh; }
+    .card { background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 100%; max-width: 400px; }
+    h1 { text-align: center; margin-bottom: 1rem; }
+    input { width: 100%; padding: 0.5rem; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: 4px; }
+    button { width: 100%; padding: 0.75rem; background: #1e40af; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    button:hover { background: #1c3fa4; }
+    .error { color: red; text-align: center; margin-bottom: 1rem; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Panel admina</h1>
+    <div id="error" class="error"></div>
+    <form id="login-form">
+      <input type="text" name="username" placeholder="Login" required />
+      <input type="password" name="password" placeholder="Hasło" required />
+      <button type="submit">Zaloguj się</button>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('login-form');
+    const errorDiv = document.getElementById('error');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorDiv.textContent = '';
+
+      const formData = new FormData(form);
+      const payload = {
+        username: formData.get('username'),
+        password: formData.get('password'),
+      };
+
+      try {
+        const res = await fetch('/login', {
+          method: 'POST',
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+
+        const result = await res.json();
+        if (result.success) {
+          window.location.href = '/admin';
+        } else {
+          errorDiv.textContent = result.message || 'Błąd logowania.';
+        }
+      } catch (err) {
+        errorDiv.textContent = 'Błąd połączenia z serwerem.';
+      }
+    });
+  </script>
+</body>
+</html>

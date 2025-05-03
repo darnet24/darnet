@@ -1,0 +1,27 @@
+<script is:inline>
+  // Ustaw motyw na podstawie localStorage przy starcie
+  const theme = localStorage.getItem("theme");
+  if (theme === "dark") {
+    document.documentElement.classList.add("dark");
+  } else {
+    document.documentElement.classList.remove("dark");
+  }
+
+  // Czekaj, aż przycisk będzie w DOM, i dopiero wtedy przypnij event
+  window.addEventListener("DOMContentLoaded", () => {
+    const button = document.getElementById("theme-toggle");
+    if (!button) return;
+
+    button.addEventListener("click", () => {
+      const isDark = document.documentElement.classList.toggle("dark");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    });
+  });
+</script>
+
+<button
+  id="theme-toggle"
+  class="ml-4 p-2 rounded border dark:border-white border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+  title="Zmień motyw">
+  🌗
+</button>

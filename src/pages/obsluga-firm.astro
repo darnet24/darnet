@@ -1,0 +1,124 @@
+---
+import "../styles/global.css";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import cms from "../data/cms-content.json";
+---
+<html lang="pl" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{cms.firmy.title}</title>
+    <meta name="description" content={cms.firmy.description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white font-sans">
+    <Navbar />
+
+    <!-- HERO -->
+    <section class="text-center py-20 px-6 bg-gray-100 dark:bg-gray-800">
+      <h1 class="text-4xl font-bold mb-4">{cms.firmy.heading}</h1>
+      <p class="text-lg max-w-3xl mx-auto">{cms.firmy.intro}</p>
+    </section>
+
+    <!-- NASZE ROZWIĄZANIA -->
+    <section class="py-16 px-6 max-w-5xl mx-auto">
+      <h2 class="text-3xl font-bold mb-6 text-center">Nasze rozwiązania dla firm</h2>
+      <div class="grid gap-8 md:grid-cols-2 text-lg text-gray-700 dark:text-gray-300">
+        {cms.firmy.oferta.map(item => (
+          <div class="flex items-start gap-3">
+            <span class="mt-1 text-yellow-400">•</span>
+            <p>{item}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- FALOWY DIVIDER -->
+    <div class="w-full overflow-hidden leading-[0]">
+      <svg class="relative block w-[150%] h-12 -mt-1 fill-gray-50 dark:fill-gray-800" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M0,0V46.29c47.42,22,94.83,34.67,142.25,38C267.37,93.2,334.28,4.93,428.32,4.46c84.43-.41,129.53,74.09,217,90.23,104.72,19.19,172.61-50.46,275.87-53.83,70.42-2.28,127.7,26.47,186.81,43.2V0Z"></path>
+      </svg>
+    </div>
+
+    <!-- DLACZEGO WARTO NAS WYBRAĆ -->
+    <section class="py-16 px-6 bg-gray-50 dark:bg-gray-800">
+      <h2 class="text-3xl font-bold text-center mb-6">Dlaczego warto nas wybrać?</h2>
+      <ul class="max-w-4xl mx-auto grid gap-4 md:grid-cols-2 list-none">
+        <li class="flex items-start gap-3"><strong class="text-yellow-400">✔</strong><span>Monitoring urządzeń i sieci 24/7 z automatycznym alertowaniem</span></li>
+        <li class="flex items-start gap-3"><strong class="text-yellow-400">✔</strong><span>Gwarantowane czasy reakcji w umowie SLA</span></li>
+        <li class="flex items-start gap-3"><strong class="text-yellow-400">✔</strong><span>Transparentne ceny – bez ukrytych opłat</span></li>
+        <li class="flex items-start gap-3"><strong class="text-yellow-400">✔</strong><span>Elastyczne pakiety dopasowane do liczby urządzeń</span></li>
+        <li class="flex items-start gap-3"><strong class="text-yellow-400">✔</strong><span>Backup lokalny i zdalny (opcjonalnie – bez dopłaty przy umowie rocznej)</span></li>
+        <li class="flex items-start gap-3"><strong class="text-yellow-400">✔</strong><span>On-site: liczba wizyt w pakiecie</span></li>
+        <li class="flex items-start gap-3"><strong class="text-yellow-400">✔</strong><span>Wsparcie zdalne: pn–pt 10–18 (bez konieczności dojazdu)</span></li>
+      </ul>
+    </section>
+
+    <!-- PAKIETY OPIEKI INFORMATYCZNEJ -->
+    <section class="py-16 px-6 bg-gray-50 dark:bg-gray-800">
+      <h2 class="text-3xl font-bold text-center mb-10">Pakiety opieki informatycznej</h2>
+      <div class="grid gap-8 md:grid-cols-4 max-w-6xl mx-auto">
+        {cms.firmy.pakiety.map(p => (
+          <div class="border p-6 rounded-lg shadow-md bg-white dark:bg-gray-900 text-center">
+            <h3 class="text-2xl font-bold mb-4">{p.name}</h3>
+            <ul class="text-left list-disc list-inside mb-6 text-gray-700 dark:text-gray-300 space-y-1">
+              <li>{p.features[0]}</li>
+              <li>{p.features[1]}</li>
+              {/* wyciągamy tylko liczebnik wizyt, a pełne godziny opisujemy niżej */}
+              <li>{p.features[2].split(" (")[0]}</li>
+              <li>{p.features[3]}</li>
+            </ul>
+            <p class="text-3xl font-extrabold text-yellow-400 mb-4">{p.price}</p>
+            <button
+              class="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-2 px-4 rounded transition"
+              onClick={() => window.location.href = '/kontakt'}
+            >
+              {p.price === 'indywidualna wycena' ? 'Wyceń pakiet' : 'Skontaktuj się'}
+            </button>
+          </div>
+        ))}
+      </div>
+      <p class="mt-8 text-center text-sm text-gray-600 dark:text-gray-400">
+        * Pakiet bez backupu: –10 % ceny.<br/>
+        Dopłata za każde urządzenie powyżej limitu: <strong>120 zł netto/urządzenie/mies.</strong>
+      </p>
+    </section>
+
+    <!-- FALOWY DIVIDER PRZED PODSUMOWANIEM -->
+    <div class="w-full overflow-hidden leading-[0]">
+      <svg class="relative block w-[150%] h-12 -mt-1 fill-gray-100 dark:fill-gray-900" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M1200 0L0 0 0 46.29c47.42 22 94.83 34.67 142.25 38 125.12 1.49 192.03-83.78 286.07-84.25 84.43-.41 129.53 74.09 217 90.23 104.72 19.19 172.61-50.46 275.87-53.83 70.42-2.28 127.7 26.47 186.81 43.2V0z"/>
+      </svg>
+    </div>
+
+    <!-- PODSUMOWANIE MODEL OPIEKI -->
+    <section class="py-16 px-6 bg-gray-100 dark:bg-gray-800">
+      <h2 class="text-2xl font-bold mb-6 text-center">Podsumowanie modelu opieki</h2>
+      <ul class="list-disc list-inside space-y-3 text-gray-700 dark:text-gray-300 max-w-xl mx-auto">
+        <li>Standardowy pakiet: <strong>499 zł netto/mies.</strong> za 4 urządzenia</li>
+        <li>Mały: {cms.firmy.pakiety[0].features[2]}</li>
+        <li>Średni: {cms.firmy.pakiety[1].features[2]}</li>
+        <li>Duży: {cms.firmy.pakiety[2].features[2]}</li>
+        <li>Dojazd w pakiecie Small: 1 wizyta on-site przed 10:00 / po 18:00</li>
+        <li>Standardowy dojazd (poza pakietem): <strong>min. 200 zł netto</strong> (przed 10:00 / po 18:00)</li>
+        <li>Dopłata za dodatkowe urządzenie: <strong>120 zł netto/urządzenie/mies.</strong></li>
+        <li>Usługa ekspresowa: <strong>+50 %</strong> (reakcja &lt; 1 h)</li>
+        <li>Weekend / after-hours / święta: <strong>+100 %</strong> (tylko krytyczne awarie)</li>
+        <li>Wsparcie zdalne: <strong>pn–pt 10–18</strong> (bez konieczności dojazdu)</li>
+      </ul>
+    </section>
+
+    <!-- CTA KOŃCOWE -->
+    <section class="text-center py-16 bg-yellow-400 text-black">
+      <h2 class="text-2xl font-bold mb-4">Chcesz szczegóły?</h2>
+      <p class="mb-6 max-w-xl mx-auto">
+        Skontaktuj się z nami, a przygotujemy ofertę skrojoną na miarę Twojej firmy.
+      </p>
+      <a href="/kontakt" class="bg-black text-white px-6 py-3 rounded hover:bg-gray-800 transition">
+        Wyślij zapytanie
+      </a>
+    </section>
+
+    <Footer />
+  </body>
+</html>

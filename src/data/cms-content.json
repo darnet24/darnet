@@ -1,0 +1,258 @@
+{
+  "seo": {
+    "title": "Darnet24 – Profesjonalna obsługa IT",
+    "description": "Kompleksowy serwis komputerowy, strony WWW, pomoc zdalna, obsługa firm – Warszawa, Pruszków, Piastów. Zaufaj Darnet24!"
+  },
+  "hero": {
+    "title": "Szybka i profesjonalna pomoc IT",
+    "subtitle": "Serwis komputerów, strony WWW, zdalne wsparcie i obsługa firm. Działamy błyskawicznie!"
+  },
+  "about": {
+    "short": "Jesteśmy zespołem pasjonatów IT z wieloletnim doświadczeniem. Darnet24 to gwarancja solidności, uczciwości i skutecznych rozwiązań – zarówno dla osób prywatnych, jak i firm."
+  },
+  "services": [
+    {
+      "title": "Serwis komputerów",
+      "description": "Naprawa laptopów, komputerów stacjonarnych i modernizacje sprzętu.",
+      "image": "/images/service-komputer.webp"
+    },
+    {
+      "title": "Usuwanie wirusów",
+      "description": "Skuteczne oczyszczanie systemów z wirusów, malware i trojanów.",
+      "image": "/images/service-wirusy.webp"
+    },
+    {
+      "title": "Sieci i Wi-Fi",
+      "description": "Projektowanie, instalacja i serwis sieci LAN/Wi-Fi.",
+      "image": "/images/service-siec.webp"
+    },
+    {
+      "title": "Pomoc zdalna",
+      "description": "Zdalne wsparcie przez AnyDesk – pakiety godzinne i szybka reakcja.",
+      "image": "/images/service-zdalna.webp"
+    },
+    {
+      "title": "Tworzenie stron WWW",
+      "description": "Nowoczesne, responsywne strony internetowe dla firm i osób prywatnych.",
+      "image": "/images/service-www.webp"
+    },
+    {
+      "title": "Obsługa firm",
+      "description": "Stała opieka informatyczna, umowy SLA, bezpieczeństwo danych.",
+      "image": "/images/service-firmy.webp"
+    }
+  ],
+  "why": {
+    "text": "Działamy z pasją i zaangażowaniem. Nasz serwis to nie tylko technika, to przede wszystkim ludzie, którym zależy. Darnet24 to terminowość, jakość, kontakt z klientem i uczciwe podejście do każdej sprawy."
+  },
+  "partners": [
+    { "src": "/images/microsoft.svg",     "alt": "Microsoft" },
+    { "src": "/images/dell.svg",          "alt": "Dell" },
+    { "src": "/images/acronis.svg",       "alt": "Acronis" },
+    { "src": "/images/hp.svg",            "alt": "HP" },
+    { "src": "/images/lenovo.svg",        "alt": "Lenovo" },
+    { "src": "/images/cisco.svg",         "alt": "Cisco" },
+    { "src": "/images/ubiquiti.svg",      "alt": "Ubiquiti" },
+    { "src": "/images/google-cloud.svg",  "alt": "Google Cloud" },
+    { "src": "/images/intel.svg",         "alt": "Intel" },
+    { "src": "/images/amd.svg",           "alt": "AMD" }
+  ],
+  "locations": [
+    { "name": "Warszawa", "link": "/lokalizacje/warszawa" },
+    { "name": "Pruszków", "link": "/lokalizacje/pruszkow" },
+    { "name": "Piastów", "link": "/lokalizacje/piastow" }
+  ],
+  "pomoc": {
+    "title": "Pomoc zdalna – Darnet24",
+    "description": "Szybka pomoc IT przez Internet – pakiety godzinowe, AnyDesk, wsparcie zdalne dla firm i osób prywatnych.",
+    "heading": "Zdalna pomoc informatyczna",
+    "subheading": "Połącz się z naszym specjalistą przez Internet – bez wychodzenia z domu. Działa błyskawicznie!",
+    "pakiety": [
+      {
+        "name": "1h – Doradczy",
+        "desc": "Jednorazowe wsparcie zdalne",
+        "price": "50 zł netto",
+        "link": "/platnosc/1h"
+      },
+      {
+        "name": "3h – Silver",
+        "desc": "Do wykorzystania w dowolnym czasie",
+        "price": "100 zł netto",
+        "link": "/platnosc/3h"
+      },
+      {
+        "name": "5h – Gold",
+        "desc": "Najczęściej wybierany pakiet",
+        "price": "270 zł netto",
+        "link": "/platnosc/5h"
+      },
+      {
+        "name": "Pakiet Premium",
+        "desc": "Priorytetowe wsparcie bez limitu czasowego w danym miesiącu",
+        "price": "400 zł netto",
+        "link": "/platnosc/premium"
+      }
+    ]
+  },
+  "firmy": {
+    "title": "Obsługa IT dla firm – Darnet24",
+    "description": "Opieka informatyczna, umowy SLA, monitoring, sieci, serwery, backup – kompleksowe IT dla Twojej firmy.",
+    "heading": "Obsługa firm i partnerów biznesowych",
+    "intro": "Zapewniamy profesjonalne i stałe wsparcie IT dla małych i średnich firm. Działamy elastycznie, skutecznie i z gwarancją SLA.",
+    "oferta": [
+      "Stała opieka informatyczna (outsourcing IT)",
+      "Monitoring urządzeń i sieci 24/7",
+      "Zarządzanie serwerami i usługami",
+      "Konfiguracja i zabezpieczanie sieci LAN / VPN",
+      "Backup danych lokalny i zdalny",
+      "Wsparcie pracowników – zdalne i lokalne",
+      "Audyt IT i rekomendacje technologiczne",
+      "Szybki czas reakcji i umowy SLA"
+    ],
+    "pakiety": [
+      {
+        "name": "Small",
+        "features": [
+          "Do 4 urządzeń",
+          "100 GB backup w chmurze",
+          "3 wizyt on-site (pn–pt 10–18)",
+          "Czas reakcji zdalnej: 1–2 h"
+        ],
+        "price": "499 zł netto/mies."
+      },
+      {
+        "name": "Medium",
+        "features": [
+          "Do 6 urządzeń",
+          "250 GB backup w chmurze",
+          "5 wizyt on-site (pn–pt 10–18)",
+          "Czas reakcji zdalnej: <1 h"
+        ],
+        "price": "799 zł netto/mies."
+      },
+      {
+        "name": "Large",
+        "features": [
+          "Do 12 urządzeń",
+          "500 GB backup w chmurze",
+          "Nielimitowane wizyty on-site",
+          "Czas reakcji zdalnej: 24/7"
+        ],
+        "price": "1 900 zł netto/mies."
+      },
+      {
+        "name": "Enterprise",
+        "features": [
+          "Nieograniczone urządzenia",
+          "Dedykowany zespół wsparcia",
+          "Pełna dostępność 24/7",
+          "SLA: reakcja < 30 min"
+        ],
+        "price": "indywidualna wycena"
+      }
+    ]
+  },
+  "cennik": {
+    "title": "Cennik usług IT",
+    "description": "Jednorazowe prace serwisowe, instalacje, sieci i odzyskiwanie danych. Poniżej stawki netto.",
+    "cta": {
+      "text": "Szukasz stałej opieki IT?",
+      "linkText": "Sprawdź pakiety dla firm →",
+      "linkUrl": "/obsluga-firm"
+    },
+    "sections": [
+      {
+        "title": "Serwis sprzętu komputerowego",
+        "items": [
+          { "label": "Instalacja urządzeń peryferyjnych (drukarka, skaner)", "price": "70 zł" },
+          { "label": "Czyszczenie wnętrza / konserwacja chłodzenia",        "price": "od 200 zł" },
+          { "label": "Czyszczenie napędu CD/DVD",                           "price": "50 zł" },
+          { "label": "Wymiana podzespołów",                                 "price": "od 150 zł" },
+          { "label": "Diagnostyka i test sprzętu",                          "price": "od 150 zł" },
+          { "label": "Montaż komputera / dobór części",                     "price": "350 zł" }
+        ]
+      },
+      {
+        "title": "Administracja sieci",
+        "items": [
+          { "label": "Konfiguracja routera",                 "price": "200 zł" },
+          { "label": "Konfiguracja urządzeń sieciowych",     "price": "100 zł" },
+          { "label": "Instalacja LAN/Wi-Fi",                 "price": "150 zł" },
+          { "label": "Konfiguracja zabezpieczeń (LAN/WLAN)", "price": "150 zł" },
+          { "label": "Instalacja Access Point",              "price": "200 zł" }
+        ]
+      },
+      {
+        "title": "Serwis oprogramowania",
+        "items": [
+          { "label": "Instalacja Windows",              "price": "200 zł" },
+          { "label": "Instalacja Mac OS / Linux",        "price": "220 zł" },
+          { "label": "Optymalizacja systemu",            "price": "120 zł" },
+          { "label": "Reinstalacja (z danymi)",          "price": "250 zł" },
+          { "label": "Usuwanie wirusów i malware",       "price": "200 zł" }
+        ]
+      },
+      {
+        "title": "Odzyskiwanie danych",
+        "items": [
+          { "label": "Kopie zapasowe i archiwizacja",      "price": "70 zł" },
+          { "label": "Odzyskiwanie danych (logiczne)",     "price": "od 700 zł" },
+          { "label": "Czyszczenie rejestrów",              "price": "80 zł" },
+          { "label": "Defragmentacja dysków",              "price": "50 zł" }
+        ]
+      }
+    ],
+    "extras": {
+      "dojazd": [
+        { "label": "Pruszków",           "value": "dojazd gratis" },
+        { "label": "Powyżej 5 km (z umową)",    "value": "+2 zł/km" },
+        { "label": "Bez umowy / prywatni",      "value": "min. 200 zł netto (10–18)" }
+      ],
+      "doplaty": [
+        { "label": "Usługi ekspresowe",         "value": "+50 % (reakcja < 1 h, szybki dojazd)" },
+        { "label": "Weekend / after-hours / święta", "value": "+100 % (tylko zgłoszenia krytyczne)" }
+      ]
+    }
+  },
+  "oNas": {
+    "title": "O nas – Darnet24",
+    "description": "Poznaj zespół Darnet24 – pasjonatów IT z doświadczeniem. Obsługujemy klientów indywidualnych i firmy.",
+    "heading": "Poznaj nas lepiej",
+    "intro": "Zespół Darnet24 to połączenie pasji, doświadczenia i technologii. Od lat dostarczamy rozwiązania informatyczne, na których możesz polegać – zarówno w domu, jak i w biurze.",
+    "tresc": [
+      "Działamy na rynku IT od wielu lat, łącząc nowoczesność z doświadczeniem. Zawsze stawiamy na pełną transparentność i uczciwość w relacjach z klientami.",
+      "Naszym celem jest zapewnienie stabilnych, szybkich i bezpiecznych usług – bez zaskoczeń. Uważnie słuchamy potrzeb zarówno osób prywatnych, jak i firm.",
+      "Oferujemy elastyczne modele współpracy: jednorazowe zlecenia, zdalne wsparcie godzinowe oraz kompleksową opiekę IT z umową SLA.",
+      "Nie jesteśmy korporacją – jesteśmy małym zespołem, ale działamy jak profesjonaliści. Rozmawiamy ludzkim językiem i zależy nam na Twoim komforcie."
+    ],
+    "team": [
+      {
+        "name": "Anna Kowalska",
+        "role": "Założycielka & CEO",
+        "photo": "/images/team-anna.webp",
+        "bio": "Z branżą IT związana od 10 lat. Specjalistka od strategii i zarządzania projektami, dba o to, by każdy klient otrzymał usługę skrojoną na miarę."
+      },
+      {
+        "name": "Michał Nowak",
+        "role": "Główny Inżynier Sieci",
+        "photo": "/images/team-michal.webp",
+        "bio": "Ekspert od sieci LAN/Wi-Fi i bezpieczeństwa. Projektuje i utrzymuje kompleksowe infrastruktury sieciowe dla firm."
+      },
+      {
+        "name": "Piotr Wiśniewski",
+        "role": "Specjalista ds. Wsparcia Zdalnego",
+        "photo": "/images/team-piotr.webp",
+        "bio": "Zajmuje się pomocą zdalną i serwisem oprogramowania. Gwarantuje szybką reakcję i satysfakcję z otrzymanego wsparcia."
+      }
+    ]
+  },
+  "kontakt": {
+    "title": "Kontakt – Darnet24",
+    "description": "Skontaktuj się z nami. Oferujemy profesjonalne wsparcie IT – szybko, konkretnie i z zaangażowaniem.",
+    "heading": "Skontaktuj się z nami",
+    "subheading": "Zadzwoń, napisz lub wpadnij – jesteśmy tu, by pomóc.",
+    "telefon": "+48 509 621 580",
+    "email": "kontakt@darnet24.pl",
+    "adres": "ul. Tadeusza Kościuszki 29, 02-495 Warszawa"
+  }
+}

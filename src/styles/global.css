@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Własne style w warstwie base, żeby nadpisać domyślną czcionkę i scrollbar */
+@layer base {
+  body {
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* ukrycie paska przewijania */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE i Edge */
+    scrollbar-width: none;    /* Firefox */
+  }
+}

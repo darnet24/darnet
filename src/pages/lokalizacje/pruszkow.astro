@@ -1,0 +1,38 @@
+---
+import "../../styles/global.css";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+---
+
+<html lang="pl" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Serwis komputerowy Pruszków – Darnet24</title>
+    <meta name="description" content="Potrzebujesz pomocy informatycznej w Pruszkowie? Serwis komputerów, sieci, strony WWW i zdalna pomoc – zadzwoń do Darnet24!" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+    <Navbar />
+
+    <section class="text-center py-20 px-6 bg-gray-100 dark:bg-gray-800">
+      <h1 class="text-4xl font-bold mb-4">Serwis komputerowy Pruszków</h1>
+      <p class="text-lg max-w-3xl mx-auto">
+        Obsługujemy Pruszków i okolice – oferujemy naprawy laptopów, konfigurację sieci, strony internetowe oraz pomoc zdalną.
+      </p>
+    </section>
+
+    <section class="py-16 px-6 max-w-5xl mx-auto text-lg text-gray-700 dark:text-gray-300 leading-relaxed space-y-6">
+      <p>
+        Jesteśmy dostępni na miejscu i zdalnie. Zadzwoń lub napisz – dojeżdżamy, diagnozujemy i pomagamy w każdej sytuacji.
+      </p>
+      <p>
+        Darnet24 to sprawdzony informatyk w Pruszkowie – również dla firm i biur, które potrzebują stałej obsługi IT.
+      </p>
+      <p>
+        Sprawdź także naszą <a href="/cennik" class="underline">ofertę cenową</a> i <a href="/pomoc-zdalna" class="underline">pakiety wsparcia zdalnego</a>.
+      </p>
+    </section>
+
+    <Footer />
+  </body>
+</html>

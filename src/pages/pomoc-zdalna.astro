@@ -1,0 +1,194 @@
+---
+// Astro Frontmatter
+import "../styles/global.css";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+--- 
+
+<html lang="pl" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Pomoc zdalna - Darnet24</title>
+    <meta name="description" content="Profesjonalne wsparcie zdalne dla osób prywatnych i firm. Szybkie rozwiązanie problemów IT." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+    <Navbar />
+
+    <!-- HERO -->
+    <section class="text-center py-20 px-6 bg-gray-100 dark:bg-gray-800">
+      <h1 class="text-4xl font-bold mb-4">Pomoc zdalna</h1>
+      <p class="text-lg max-w-2xl mx-auto">
+        Oferujemy wsparcie zdalne zarówno dla osób prywatnych, jak i firm. Rozwiązujemy problemy IT, optymalizujemy
+        pracę komputerów i dbamy o płynność Twojej sieci.
+      </p>
+    </section>
+
+    <!-- WPROWADZENIE -->
+    <section class="py-12 px-6 max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl font-bold mb-4">Dlaczego warto skorzystać?</h2>
+      <ul class="text-left inline-block text-gray-700 dark:text-gray-300 space-y-2">
+        <li>✅ Błyskawiczna pomoc bez potrzeby dojazdu</li>
+        <li>✅ Wykwalifikowani technicy z wieloletnim doświadczeniem</li>
+        <li>✅ Bezpieczna i poufna diagnostyka</li>
+        <li>✅ Elastyczne pakiety dopasowane do Twoich potrzeb</li>
+        <li>✅ Obsługa 24/7 (wybrane pakiety)</li>
+      </ul>
+    </section>
+
+    <!-- PAKIETY -->
+    <section class="py-16 px-6 bg-white dark:bg-gray-900">
+      <h2 class="text-3xl font-bold text-center mb-10">Wybierz pakiet</h2>
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4 max-w-6xl mx-auto">
+        <!-- Start -->
+        <div class="border p-6 rounded-lg shadow-md bg-white dark:bg-gray-800 text-center">
+          <h3 class="text-xl font-bold mb-2">Start</h3>
+          <p class="mb-4 text-gray-700 dark:text-gray-300">30 minut pomocy zdalnej (idealny dla domu)</p>
+          <p class="text-2xl font-semibold text-yellow-400 mb-4">199 zł</p>
+          <button class="kup-btn bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-2 px-4 rounded" data-name="Start" data-price="199">
+            Kup teraz
+          </button>
+        </div>
+        <!-- Profesjonalny -->
+        <div class="border p-6 rounded-lg shadow-md bg-white dark:bg-gray-800 text-center">
+          <h3 class="text-xl font-bold mb-2">Profesjonalny</h3>
+          <p class="mb-4 text-gray-700 dark:text-gray-300">1 godzina pomocy zdalnej + optymalizacja (firma)</p>
+          <p class="text-2xl font-semibold text-yellow-400 mb-4">399 zł</p>
+          <button class="kup-btn bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-2 px-4 rounded" data-name="Profesjonalny" data-price="399">
+            Kup teraz
+          </button>
+        </div>
+        <!-- Biznes -->
+        <div class="border p-6 rounded-lg shadow-md bg-white dark:bg-gray-800 text-center">
+          <h3 class="text-xl font-bold mb-2">Biznes</h3>
+          <p class="mb-4 text-gray-700 dark:text-gray-300">2 godziny pomocy zdalnej + priorytet</p>
+          <p class="text-2xl font-semibold text-yellow-400 mb-4">699 zł</p>
+          <button class="kup-btn bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-2 px-4 rounded" data-name="Biznes" data-price="699">
+            Kup teraz
+          </button>
+        </div>
+        <!-- Abonament -->
+        <div class="border p-6 rounded-lg shadow-md bg-white dark:bg-gray-800 text-center">
+          <h3 class="text-xl font-bold mb-2">Abonament</h3>
+          <p class="mb-4 text-gray-700 dark:text-gray-300">Nielimitowana pomoc zdalna przez 30 dni</p>
+          <p class="text-2xl font-semibold text-yellow-400 mb-4">1 499 zł</p>
+          <button class="kup-btn bg-yellow-400 hover:bg-yellow-500 text-black font-semibold py-2 px-4 rounded" data-name="Abonament" data-price="1499">
+            Kup teraz
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODAL -->
+    <div id="modal-overlay" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center hidden z-50">
+      <div class="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-white dark:bg-gray-900 rounded-lg p-8 shadow-xl">
+        <button onclick="zamknijModal()" class="absolute top-4 right-4 text-2xl text-gray-400 hover:text-white">&times;</button>
+        <h2 class="text-2xl font-bold mb-2">Zamów pomoc zdalną</h2>
+        <!-- Link AnyDesk -->
+        <div class="mb-4 text-center">
+          <a href="https://anydesk.com/download" target="_blank" rel="noopener noreferrer"
+             class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded">
+            Pobierz AnyDesk
+          </a>
+        </div>
+        <form id="remote-support-form" class="space-y-4">
+          <input type="text" name="name" placeholder="Imię i nazwisko / Firma" required class="w-full p-2 border rounded text-black" />
+          <input type="email" name="email" placeholder="Adres e-mail" required class="w-full p-2 border rounded text-black" />
+          <input type="hidden" name="packageName" id="packageName" />
+          <input type="hidden" name="amount" id="amount" />
+          <input type="text" name="hp_token" class="hidden" autocomplete="off" tabindex="-1" />
+
+          <label class="flex items-start gap-2 text-sm">
+            <input type="checkbox" name="zgodaRODO" required />
+            <span>Wyrażam zgodę na przetwarzanie danych osobowych zgodnie z
+              <a href="/polityka-prywatnosci" class="underline">Polityką prywatności</a>.
+            </span>
+          </label>
+
+          <label class="flex items-start gap-2 text-sm">
+            <input type="checkbox" name="zgodaMarketingowa" />
+            <span>Zgadzam się na otrzymywanie informacji handlowych (opcjonalnie).</span>
+          </label>
+
+          <label class="flex items-start gap-2 text-sm">
+            <input type="checkbox" id="chceFakture" />
+            <span>Chcę otrzymać fakturę</span>
+          </label>
+
+          <div id="daneFaktura" class="hidden space-y-2">
+            <input type="text" name="nazwaFaktura" placeholder="Nazwa firmy / osoba prywatna" class="w-full p-2 border rounded text-black" />
+            <input type="text" name="nip" placeholder="NIP (opcjonalnie)" class="w-full p-2 border rounded text-black" />
+            <textarea name="adresFaktura" placeholder="Adres do faktury" class="w-full p-2 border rounded text-black"></textarea>
+          </div>
+
+          <div id="remote-msg" class="text-sm"></div>
+          <div class="text-right">
+            <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold px-6 py-2 rounded">
+              Zamawiam i przechodzę do płatności
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script is:inline>
+      function pokazFormularz(pakiet, cena) {
+        document.getElementById('modal-overlay').classList.remove('hidden');
+        document.getElementById('packageName').value = pakiet;
+        document.getElementById('amount').value = cena;
+      }
+      function zamknijModal() {
+        document.getElementById('modal-overlay').classList.add('hidden');
+      }
+      document.querySelectorAll('.kup-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const pakiet = btn.dataset.name;
+          const cena = parseInt(btn.dataset.price.replace(/\D/g, ''));
+          pokazFormularz(pakiet, cena);
+        });
+      });
+      document.getElementById('chceFakture').addEventListener('change', function () {
+        document.getElementById('daneFaktura').classList.toggle('hidden', !this.checked);
+      });
+      document.getElementById('remote-support-form').addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const form = e.target;
+        const msg = document.getElementById('remote-msg');
+        msg.textContent = '';
+        const data = {
+          name: form.name.value,
+          email: form.email.value,
+          packageName: form.packageName.value,
+          amount: parseInt(form.amount.value),
+          zgodaRODO: form.zgodaRODO.checked ? 'true' : 'false',
+          zgodaMarketingowa: form.zgodaMarketingowa.checked ? 'true' : 'false',
+          hp_token: form.hp_token.value || '',
+          chceFakture: form.querySelector('#chceFakture').checked,
+          nazwaFaktura: form.nazwaFaktura?.value || '',
+          nip: form.nip?.value || '',
+          adresFaktura: form.adresFaktura?.value || ''
+        };
+        try {
+          const res = await fetch('http://10.0.10.227:3010/api/remote-support', {
+            method: 'POST',
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+          const result = await res.json();
+          if (result.success) {
+            msg.textContent = '✅ Zamówienie zapisane. Przekierowanie do płatności...';
+            const redirectUrl = `https://sandbox.przelewy24.pl/trnRequest/${encodeURIComponent(data.packageName)}-${data.amount}`;
+            setTimeout(() => window.location.href = redirectUrl, 1500);
+          } else {
+            msg.textContent = '❌ ' + result.message;
+          }
+        } catch (err) {
+          msg.textContent = '❌ Błąd połączenia z serwerem.';  
+        }
+      });
+    </script>
+
+    <Footer />
+  </body>
+</html>

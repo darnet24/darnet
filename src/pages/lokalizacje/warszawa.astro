@@ -1,0 +1,39 @@
+---
+import "../../styles/global.css";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+---
+
+<html lang="pl" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Serwis komputerowy Warszawa – Darnet24</title>
+    <meta name="description" content="Potrzebujesz pomocy IT w Warszawie? Darnet24 to szybki serwis komputerowy, pomoc zdalna i obsługa firm. Zadzwoń teraz!" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+    <Navbar />
+
+    <section class="text-center py-20 px-6 bg-gray-100 dark:bg-gray-800">
+      <h1 class="text-4xl font-bold mb-4">Serwis komputerowy Warszawa</h1>
+      <p class="text-lg max-w-3xl mx-auto">
+        Darnet24 działa na terenie Warszawy – oferujemy naprawy komputerów, konfiguracje sieci, usuwanie wirusów, tworzenie stron WWW oraz pomoc zdalną.
+      </p>
+    </section>
+
+    <section class="py-16 px-6 max-w-5xl mx-auto text-lg text-gray-700 dark:text-gray-300 leading-relaxed space-y-6">
+      <p>
+        Niezależnie od tego, czy mieszkasz na Woli, Ursynowie, Pradze czy Mokotowie – możemy pomóc z Twoim sprzętem IT.
+        Zadzwoń lub skontaktuj się z nami – dojeżdżamy lub pomagamy zdalnie.
+      </p>
+      <p>
+        Świadczymy usługi serwisu komputerowego, konfiguracji sieci, odzyskiwania danych, a także oferujemy stałą obsługę informatyczną firm.
+      </p>
+      <p>
+        Możesz także skorzystać z <a href="/pomoc-zdalna" class="underline">pomocy zdalnej</a> lub odwiedzić naszą sekcję <a href="/cennik" class="underline">cennik</a>, aby sprawdzić szczegóły oferty.
+      </p>
+    </section>
+
+    <Footer />
+  </body>
+</html>

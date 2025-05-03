@@ -1,0 +1,38 @@
+---
+import "../../styles/global.css";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+---
+
+<html lang="pl" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Serwis komputerowy Piastów – Darnet24</title>
+    <meta name="description" content="Darnet24 to profesjonalna pomoc IT w Piastowie – naprawa komputerów, strony WWW, sieci i wsparcie zdalne dla firm i osób prywatnych." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+    <Navbar />
+
+    <section class="text-center py-20 px-6 bg-gray-100 dark:bg-gray-800">
+      <h1 class="text-4xl font-bold mb-4">Serwis komputerowy Piastów</h1>
+      <p class="text-lg max-w-3xl mx-auto">
+        Szukasz informatyka w Piastowie? Jesteśmy do Twojej dyspozycji – zdalnie i lokalnie. Naprawy, sieci, strony i więcej!
+      </p>
+    </section>
+
+    <section class="py-16 px-6 max-w-5xl mx-auto text-lg text-gray-700 dark:text-gray-300 leading-relaxed space-y-6">
+      <p>
+        Pomagamy mieszkańcom Piastowa i okolic – szybko, konkretnie i bez ukrytych kosztów.
+      </p>
+      <p>
+        Obsługujemy również lokalne firmy, zapewniając serwis sprzętu, sieci LAN/Wi-Fi, a także opiekę IT.
+      </p>
+      <p>
+        Zobacz naszą <a href="/cennik" class="underline">ofertę cenową</a> lub <a href="/kontakt" class="underline">napisz do nas</a>.
+      </p>
+    </section>
+
+    <Footer />
+  </body>
+</html>

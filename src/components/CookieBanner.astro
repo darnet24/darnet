@@ -1,0 +1,61 @@
+---
+// Komponent banera cookies zgodny z RODO i ePrivacy
+---
+<div id="cookie-banner" class="fixed bottom-0 inset-x-0 bg-gray-100 text-gray-800 p-4 shadow-md z-50 hidden">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm">
+      <p class="flex-1">
+        Szanujemy Twoją prywatność! Strona używa cookies w celach technicznych, statystycznych i marketingowych. Więcej informacji znajdziesz w <a href="/polityka-cookies" class="underline text-blue-600">Polityce cookies</a>.
+      </p>
+      <div class="flex gap-2 flex-wrap justify-end">
+        <button onclick="acceptCookies(true)" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Zaakceptuj wszystkie</button>
+        <button onclick="acceptCookies(false)" class="bg-gray-300 text-gray-800 px-4 py-2 rounded hover:bg-gray-400">Odrzuć</button>
+        <button onclick="document.getElementById('cookie-settings').classList.remove('hidden')" class="text-blue-600 underline">Ustawienia</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Panel ustawień cookies -->
+  <div id="cookie-settings" class="fixed bottom-20 left-4 right-4 md:left-auto md:right-4 bg-white border border-gray-300 shadow-lg p-4 rounded-md z-50 hidden max-w-md">
+    <h3 class="font-semibold text-lg mb-3">Ustawienia cookies</h3>
+    <form class="flex flex-col gap-2 text-sm">
+      <label><input type="checkbox" disabled checked /> Niezbędne (zawsze aktywne)</label>
+      <label><input type="checkbox" id="analytics-cookies" /> Analityczne</label>
+      <label><input type="checkbox" id="marketing-cookies" /> Marketingowe</label>
+      <button type="button" onclick="saveCookiePreferences()" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 w-fit">Zapisz ustawienia</button>
+    </form>
+  </div>
+  
+  <script is:global>
+    function showCookieBanner() {
+      if (!localStorage.getItem('cookieConsent')) {
+        document.getElementById('cookie-banner')?.classList.remove('hidden');
+      }
+    }
+  
+    function acceptCookies(all) {
+      localStorage.setItem('cookieConsent', all ? 'all' : 'essential');
+      localStorage.setItem('analyticsCookies', all);
+      localStorage.setItem('marketingCookies', all);
+      document.getElementById('cookie-banner')?.classList.add('hidden');
+      document.getElementById('cookie-settings')?.classList.add('hidden');
+    }
+  
+    function saveCookiePreferences() {
+      const analytics = document.getElementById('analytics-cookies');
+      const marketing = document.getElementById('marketing-cookies');
+  
+      if (analytics && marketing) {
+        localStorage.setItem('cookieConsent', 'custom');
+        localStorage.setItem('analyticsCookies', analytics.checked);
+        localStorage.setItem('marketingCookies', marketing.checked);
+      }
+  
+      const banner = document.getElementById('cookie-banner');
+      const settings = document.getElementById('cookie-settings');
+      if (banner) banner.classList.add('hidden');
+      if (settings) settings.classList.add('hidden');
+    }
+  
+    document.addEventListener('DOMContentLoaded', showCookieBanner);
+  </script>
+  

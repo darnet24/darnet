@@ -1,0 +1,39 @@
+---
+// src/components/Navbar.astro
+import ThemeToggle from './ThemeToggle.astro';
+---
+<nav class="flex justify-between items-center px-6 py-4 bg-white dark:bg-gray-900 shadow-md sticky top-0 z-50">
+  <!-- Logo -->
+  <a href="/" class="inline-flex items-center gap-2 whitespace-nowrap">
+    <!-- większa ikonka -->
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      class="w-8 h-8 text-yellow-400"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <line x1="12" y1="4" x2="12" y2="12" />
+      <circle cx="12" cy="14" r="8" />
+    </svg>
+    <!-- tekst DARNET24 -->
+    <span class="text-2xl font-extrabold text-white">
+      DAR<span class="text-yellow-400">NET24</span>
+    </span>
+  </a>
+
+  <!-- Menu -->
+  <ul class="flex gap-6 text-lg text-gray-800 dark:text-gray-200">
+    <li><a href="/o-nas" class="hover:underline">O nas</a></li>
+    <li><a href="/pomoc-zdalna" class="hover:underline">Pomoc zdalna</a></li>
+    <li><a href="/cennik" class="hover:underline">Cennik</a></li>
+    <li><a href="/obsluga-firm" class="hover:underline">Obsługa firm</a></li>
+    <li><a href="/kontakt" class="hover:underline">Kontakt</a></li>
+  </ul>
+
+  <!-- Przełącznik motywu -->
+  <ThemeToggle />
+</nav>

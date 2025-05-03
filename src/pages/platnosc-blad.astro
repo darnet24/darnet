@@ -1,0 +1,23 @@
+---
+import "../styles/global.css";
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<html lang="pl" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8">
+    <title>Płatność nieudana - Darnet24</title>
+  </head>
+  <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+    <Navbar />
+
+    <section class="text-center p-12">
+      <h1 class="text-4xl font-bold text-red-500 mb-6">Błąd płatności</h1>
+      <p class="text-lg">Wystąpił problem z realizacją Twojej płatności. Spróbuj ponownie lub skontaktuj się z nami.</p>
+      <a href="/" class="mt-6 inline-block bg-yellow-400 p-2 rounded text-black font-bold">Powrót na stronę główną</a>
+    </section>
+
+    <Footer />
+  </body>
+</html>

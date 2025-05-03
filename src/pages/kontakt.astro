@@ -1,0 +1,169 @@
+---
+import "../styles/global.css";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import cms from "../data/cms-content.json";
+---
+
+<html lang="pl" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{cms.kontakt.title}</title>
+    <meta name="description" content={cms.kontakt.description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+    <Navbar />
+
+<section class="py-20 px-6 bg-gray-100 dark:bg-gray-800">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start text-gray-800 dark:text-gray-300">
+    <!-- LEWA KOLUMNA: Info kontaktowe -->
+    <div>
+      <h1 class="text-4xl font-bold mb-4">{cms.kontakt.heading}</h1>
+      <p class="text-lg mb-6">{cms.kontakt.subheading}</p>
+
+      <ul class="space-y-4 text-lg">
+        <li>
+          <strong>📧 E-mail:</strong>
+          <a href={"mailto:" + cms.kontakt.email} class="underline text-blue-600">{cms.kontakt.email}</a>
+        </li>
+        <li>
+          <strong>📞 Telefon:</strong>
+          <a href={"tel:" + cms.kontakt.telefon} class="underline text-blue-600">{cms.kontakt.telefon}</a>
+        </li>
+        <li>
+          <strong>📍 Adres:</strong>
+          <a
+            href={"https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(cms.kontakt.adres)}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="underline text-blue-600"
+          >
+            {cms.kontakt.adres}
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- PRAWA KOLUMNA: Formularz -->
+    <form id="kontakt-form" class="space-y-4 bg-gray-900 text-white p-6 rounded-xl shadow-xl" method="POST" novalidate>
+      <h2 class="text-2xl font-bold mb-2">Formularz kontaktowy</h2>
+    
+      <input type="text" name="name" placeholder="Imię i nazwisko" required class="w-full p-3 border rounded text-black" />
+      <input type="email" name="email" placeholder="Adres e-mail" required class="w-full p-3 border rounded text-black" />
+      <textarea name="message" placeholder="Twoja wiadomość" required class="w-full p-3 border rounded text-black h-32"></textarea>
+    
+      <div class="text-sm space-y-2 text-gray-300">
+        <label class="flex items-start gap-2">
+          <input type="checkbox" name="zgodaRODO" required class="mt-1" />
+          <span>
+            Wyrażam zgodę na przetwarzanie moich danych osobowych w celu obsługi zapytania zgodnie z
+            <a href="/polityka-prywatnosci" class="underline text-blue-400">Polityką prywatności</a>.
+          </span>
+        </label>
+    
+        <label class="flex items-start gap-2">
+          <input type="checkbox" name="zgodaMarketingowa" class="mt-1" />
+          <span>
+            Wyrażam zgodę na otrzymywanie informacji handlowych drogą elektroniczną (opcjonalnie).
+          </span>
+        </label>
+      </div>
+    
+      <!-- STATUS + SPINNER -->
+      <div id="form-status-wrapper" class="transition-opacity duration-500 opacity-0 h-6 flex items-center gap-2">
+        <svg id="spinner" class="w-4 h-4 animate-spin text-yellow-400 hidden" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 100 16v-4l-3 3 3 3v-4a8 8 0 01-8-8z"></path>
+        </svg>
+        <span id="form-status" class="text-sm font-semibold"></span>
+      </div>
+    
+      <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">
+        Wyślij
+      </button>
+    </form>
+    <script is:global>
+      document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("kontakt-form");
+        const zgodaRODO = form.querySelector("input[name='zgodaRODO']");
+        const statusWrapper = document.getElementById("form-status-wrapper");
+        const statusEl = document.getElementById("form-status");
+        const spinner = document.getElementById("spinner");
+    
+        // Walidacja checkboxa RODO (wizualna)
+        zgodaRODO.addEventListener("invalid", () => {
+          zgodaRODO.classList.add("ring-2", "ring-red-500", "ring-offset-2");
+        });
+    
+        zgodaRODO.addEventListener("change", () => {
+          if (zgodaRODO.checked) {
+            zgodaRODO.classList.remove("ring-2", "ring-red-500", "ring-offset-2");
+          }
+        });
+    
+        // Obsługa wysyłki formularza
+        form.addEventListener("submit", async function (e) {
+          e.preventDefault();
+    
+          // Walidacja lokalna zgody RODO
+          if (!zgodaRODO.checked) {
+            spinner.classList.add("hidden");
+            statusWrapper.classList.remove("opacity-0");
+            statusEl.textContent = "❌ Błąd: Zgoda RODO jest wymagana.";
+            statusEl.className = "text-red-500 text-sm font-semibold";
+            zgodaRODO.classList.add("ring-2", "ring-red-500", "ring-offset-2");
+            return;
+          }
+    
+          const data = {
+            name: form.name.value,
+            email: form.email.value,
+            message: form.message.value,
+            zgodaMarketingowa: form.zgodaMarketingowa?.checked || false,
+            zgodaRODO: "true",
+          };
+    
+          spinner.classList.remove("hidden");
+          statusEl.textContent = "Wysyłanie wiadomości...";
+          statusEl.className = "text-yellow-400 text-sm font-semibold";
+          statusWrapper.classList.remove("opacity-0");
+    
+          try {
+            const res = await fetch("http://10.0.10.227:3001/api/contact", {
+              method: "POST",
+              credentials: "include",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(data),
+            });
+    
+            const result = await res.json();
+            spinner.classList.add("hidden");
+    
+            if (result.success) {
+              statusEl.textContent = "✅ Wiadomość została wysłana.";
+              statusEl.className = "text-green-500 text-sm font-semibold";
+              form.reset();
+            } else {
+              statusEl.textContent = "❌ Błąd: " + result.message;
+              statusEl.className = "text-red-500 text-sm font-semibold";
+            }
+          } catch (err) {
+            spinner.classList.add("hidden");
+            statusEl.textContent = "❌ Nie udało się wysłać wiadomości. Spróbuj później.";
+            statusEl.className = "text-red-500 text-sm font-semibold";
+          }
+        });
+      });
+    </script>
+    
+    
+    
+  </div>
+</section>
+
+
+    <Footer />
+    
+  </body>
+</html>
